@@ -1,0 +1,9 @@
+## 安装yarn
+BAOdeMacBook-Pro:element-starter bao$ yarn
+yarn install v1.13.0
+[1/5] 🔍  Validating package.json...
+[2/5] 🔍  Resolving packages...
+[3/5] 🚚  Fetching packages...
+
+
+## 感觉目录内容较少 决定使用redis-admin-ui从头自建
