@@ -17,54 +17,38 @@
 
     <el-container>
 
-      <el-aside width="300px" style="background-color: rgb(238, 241, 246)">
+      <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
 
-
-        <div class="tools">
-          <i v-bind:class="isCollapse?'el-icon-arrow-left':'el-icon-arrow-right'" @click="collapse"></i>
-        </div>
-
-        <el-menu :default-openeds="['1', '2']" :collapse="isCollapse" collapse-transition=false>
-
-
-          <template v-for="(item, index) in $router.options.routes" v-if="!item.hidden">
-            <!-- 如果有二级菜单 -->
-            <el-submenu :index="index+''" v-if="item.children">
-              <template slot="title"><i :class="item.iconCls"></i><span>{{item.name}}</span></template>
-              <el-menu-item v-for="child in item.children" :index="child.path" :key="child.path" v-if="!child.hidden">{{child.name}}</el-menu-item>
-            </el-submenu>
-            <!-- 如果没有二级菜单 -->
-            <!-- <el-menu-item v-if="item.leaf&&item.children.length>0" :index="item.children[0].path"><i :class="item.iconCls"></i>{{item.children[0].name}}</el-menu-item> -->
-            <el-menu-item v-if="!item.children" :index="item.path"><i :class="item.iconCls"></i><span>{{item.name}}</span></el-menu-item>
-          </template>
-
-
-          <el-submenu index="11">
+  
+      <div class="tools">
+        <i v-bind:class="isCollapse?'el-icon-arrow-left':'el-icon-arrow-right'" @click="collapse"></i>
+      </div>    
+      
+        <el-menu :default-openeds="['1', '2']" :collapse="isCollapse">
+          <el-submenu index="1">
             <template slot="title"><i class="el-icon-message"></i><span>导航一</span></template>
             <el-menu-item-group>
-              <el-menu-item index="11-1">选项1</el-menu-item>
-              <el-menu-item index="11-2">选项2</el-menu-item>
+              <el-menu-item index="1-1">选项1</el-menu-item>
+              <el-menu-item index="1-2">选项2</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
 
 
-          <el-submenu index="12">
+          <el-submenu index="2">
             <template slot="title"><i class="el-icon-menu"></i><span>导航二</span></template>
             <el-menu-item-group>
               <template slot="title">分组一</template>
-              <el-menu-item index="12-1">选项1</el-menu-item>
-              <el-menu-item index="12-2">选项2</el-menu-item>
+              <el-menu-item index="2-1">选项1</el-menu-item>
+              <el-menu-item index="2-2">选项2</el-menu-item>
             </el-menu-item-group>
             <el-menu-item-group title="分组2">
-              <el-menu-item index="12-3">选项3</el-menu-item>
+              <el-menu-item index="2-3">选项3</el-menu-item>
             </el-menu-item-group>
-            <el-submenu index="12-4">
+            <el-submenu index="2-4">
               <template slot="title">选项4</template>
-              <el-menu-item index="12-4-1">选项4-1</el-menu-item>
+              <el-menu-item index="2-4-1">选项4-1</el-menu-item>
             </el-submenu>
           </el-submenu>
-
-          <!-- -->
         </el-menu>
       </el-aside>
       <!-- 侧边栏和main panel css生效-->
@@ -94,7 +78,10 @@
 
 
 <style>
-
+  .el-container {
+    margin-bottom: 40px;
+    background: greenyellow;
+  }
 
   .el-header {
     background-color: #B3C0D1;
@@ -102,14 +89,16 @@
     line-height: 60px;
   }
 
-  .el-footer {
+ .el-footer {
     background-color: rgb(209, 179, 203);
     color: #333;
     text-align: center;
     line-height: 60px;
   }
 
-
+  .el-aside {
+    color: #333;
+  }
 
   .el-menu-vertical-demo:not(.el-menu--collapse) {
     width: 200px;
