@@ -1,5 +1,10 @@
-# 问题描述
-store.js
+# 问题描述 
+
+```
+在一个页面路由到另一个页面的场景中，某个页面vue页面初始化的时候，vue的侦听器watch侦听不到计算属性的问题（如果通过F5刷新则没问题）
+```
+
+## store.js
 ``` js
 import Vue from 'vue'
 import Vuex from 'vuex'
@@ -23,7 +28,7 @@ export default new Vuex.Store({
 
 ```
 
-RedisDetail.vue
+## RedisDetail.vue
 ``` js
 <template>
   <div>
@@ -47,7 +52,7 @@ RedisDetail.vue
 </script>
 ```
 
-RedisDetailHead.vue
+## RedisDetailHead.vue
 ``` js
  <template>
   <section></section>
@@ -66,7 +71,7 @@ RedisDetailHead.vue
 
 </script>
 ```
-RedisDetailChart.vue
+## RedisDetailChart.vue
 ``` js
 <template>
   <section>
@@ -120,6 +125,5 @@ RedisDetailChart.vue
 ```
 # 疑问
 疑问: 
-为什么如果F5刷新http://localhost:8087/#/page202/5，111行就能触发；如果这个页面是
-
-但是通过别的页面<router-link :to="'/page202/' + scope.row.id">进入就不能触发
+为什么如果F5刷新http://localhost:8087/#/page202/5，111行就能触发；  
+如果这个页面是从别的页面路由过去`<router-link :to="'/page202/' + scope.row.id">`进入就不能触发,但是页面如果直接使用getRedisInfo这个方法`<span>{{filters.id+'-'+getRedisInfo}}</span>`也能正常显示。
