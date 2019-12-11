@@ -124,6 +124,7 @@ export default new Vuex.Store({
 </script>
 ```
 # 疑问
-疑问: 
+
+- 疑问: 
 为什么如果F5刷新http://localhost:8087/#/page202/5，111行就能触发；  
 如果这个页面是从别的页面路由过去`<router-link :to="'/page202/' + scope.row.id">`进入就不能触发,但是页面如果直接使用getRedisInfo这个方法`<span>{{filters.id+'-'+getRedisInfo}}</span>`也能正常显示。
