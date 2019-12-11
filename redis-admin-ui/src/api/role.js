@@ -64,5 +64,10 @@ export default {
     return axios.get(`${base}/${tag}/addMenu`, {
       params: params
     });
+  },
+  upMenu: params => {
+    return axios.get(`${base}/${tag}/upMenu`, {
+      params: params
+    });
   }
 }

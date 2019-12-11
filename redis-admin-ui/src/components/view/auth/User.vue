@@ -98,7 +98,7 @@
 
     <!-- -->
     <el-dialog :title="'['+editRoleForm.userName + ']角色列表'" :visible.sync="dialogEditMenuFormVisible"
-      :close-on-click-modal="false" style="width: 1000px;">
+      :close-on-click-modal="false" style="width: 1100px;">
       <hr/>
       <br/>
       <Span>角色列表:</Span>
@@ -121,8 +121,12 @@
           </template>
           <span class="prop"></span>
         </el-table-column>
-
-        <el-table-column label="--" width="100">
+        <el-table-column label="--" width="60">
+          <template slot-scope="scope">
+            <el-button plain type="warning" size="small" @click="handleUpRole4User(scope.$index, scope.row)">↑</el-button>
+          </template>
+        </el-table-column>
+        <el-table-column label="--" width="80">
           <template slot-scope="scope">
             <el-button type="danger" size="small" @click="handleDelRole4User(scope.$index, scope.row)">删除</el-button>
           </template>
@@ -448,6 +452,34 @@
                 console.log('%c FIND_LOG User.vue curr:', 'color:#0f0;', currUser);
                 this.editRoleForm.roles = currUser.roles;
               }); //刷新表格
+            });
+          })
+          .catch(e => {
+            console.log('%c User.vue currRole err:', 'color:#0f0;', e);
+          });
+      },
+      handleUpRole4User: function (index, row) {
+        this.$confirm("确认上移角色吗????", "提示", {
+            type: "warning"
+          })
+          .then(() => {
+            let para = {
+              roleId: row.id,
+              userId: this.editRoleForm.userId
+            };
+
+            userApi.upRole(para).then(res => {
+              this.$message({
+                message: "上移成功",
+                type: "success"
+              });
+              this.getUsers((res) => {
+                let currUser = this.users.find(function (r) {
+                  return r.id == para.userId;
+                });
+                console.log('%c FIND_LOG User.vue curr:', 'color:#0f0;', currUser);
+                this.editRoleForm.roles = currUser.roles;
+              }); 
             });
           })
           .catch(e => {

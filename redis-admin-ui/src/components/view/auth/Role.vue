@@ -33,10 +33,10 @@ TODO 如何排除JS异常
         </template>
         <span class="prop"></span>
 			</el-table-column>
-      <el-table-column prop="menuIds" label="菜单Ids" width="100" sortable>
+      <!-- <el-table-column prop="menuIds" label="菜单Ids" width="100" sortable>
       </el-table-column>
       <el-table-column prop="menuNames" label="菜单列表" width="100" :formatter="formatJoin" sortable>
-      </el-table-column>
+      </el-table-column> -->
 
       <el-table-column prop="createTime" label="创建时间" width="180" :formatter="formatDate" sortable>
       </el-table-column>
@@ -86,7 +86,7 @@ TODO 如何排除JS异常
       编辑菜单按对话框
     -->
     <el-dialog :title="'['+editMenuForm.roleName + ']菜单列表'" :visible.sync="dialogEditMenuFormVisible"
-      :close-on-click-modal="false" style="width: 1000px;">
+      :close-on-click-modal="false" style="width: 1100px;">
       <hr/>
       <br/>
       <Span>菜单列表:</Span>
@@ -110,8 +110,12 @@ TODO 如何排除JS异常
           </template>
           <span class="prop"></span>
         </el-table-column>
-
-        <el-table-column label="--" width="100">
+        <el-table-column label="--" width="60">
+          <template slot-scope="scope">
+            <el-button plain type="warning" size="small" @click="handleUpMenu4Role(scope.$index, scope.row)">↑</el-button>
+          </template>
+        </el-table-column>
+        <el-table-column label="--" width="80">
           <template slot-scope="scope">
             <el-button plain type="danger" size="small" @click="handleDelMenu4Role(scope.$index, scope.row)">删除</el-button>
           </template>
@@ -409,6 +413,31 @@ TODO 如何排除JS异常
                 console.log('%c Role.vue currRole:', 'color:#0f0;', currRole);
                 this.editMenuForm.menus = currRole.menus;
               }); //刷新表格
+            });
+          })
+          .catch(() => {});
+      },
+      handleUpMenu4Role: function (index, row) {
+        this.$confirm("确认上移该记录吗?", "提示", {
+            type: "warning"
+          })
+          .then(() => {
+            let para = {
+              menuId: row.id,
+              roleId: this.editMenuForm.roleId
+            };
+            roleApi.upMenu(para).then(res => {
+              this.$message({
+                message: "上移成功",
+                type: "success"
+              });
+              this.getItems((res) => {
+                let currRole = this.items.find(function (r) {
+                  return r.id == para.roleId;
+                });
+                console.log('%c Role.vue currRole:', 'color:#0f0;', currRole);
+                this.editMenuForm.menus = currRole.menus;
+              }); 
             });
           })
           .catch(() => {});

@@ -15,6 +15,12 @@ import Operate from '@/components/view/auth/Operate'
 
 import Echarts from '@/components/view/nav1/Echarts'
 import Echarts2 from '@/components/view/nav1/Echarts2'
+//redis dashboard
+import RedisConfig from '@/components/view/redis/RedisConfig'
+import RedisDetail from '@/components/view/redis/RedisDetail'
+
+import RedisConf from '@/components/view/redis/RedisConf'
+
 
 
 
@@ -71,8 +77,7 @@ export default new Router({
       ]
     }
     //测试图表
-    ,
-    {
+    ,{
       path: '/',
       component: Home,
       name: '测试图表',
@@ -86,6 +91,29 @@ export default new Router({
           path: '/page82',
           component: Echarts2,
           name: '测试图表菜单2'
+        }
+      ]
+    } 
+    //Redis监控等
+    , {
+      path: '/',
+      component: Home,
+      name: 'Redis监控',
+      iconCls: 'el-icon-menu',
+      children: [{
+          path: '/page201',
+          component: RedisConfig,
+          name: 'Redis配置'
+        }, {
+          path: '/page202',
+          component: RedisDetail,
+          name: 'RedisDetail'
+        }, {
+          path: '/page202/:id',
+          component: RedisDetail
+        }, {
+          path: '/page203/:id',
+          component: RedisConf
         }
       ]
     }

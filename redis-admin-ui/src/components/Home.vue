@@ -21,7 +21,8 @@
       </el-col>
     </el-header>
     <div>
-      <div @click="test()" style="padding: 10px;width: 40px;cursor: pointer;background: #1890ff;color: #fff;">
+      <!-- background: #1890ff;color: #fff;-->
+      <div @click="test()" style="padding: 10px;width: 40px;cursor: pointer;">
         {{way}}
       </div>
     </div>
@@ -64,9 +65,9 @@
           <!--  动态拉取 -->
           <template v-for="(item, index) in roles">
             <el-submenu :index="index+''">
-              <template slot="title"><i :class="item.icon"></i><span>{{item.roleName+'index='+index}}</span></template>
+              <template slot="title"><i :class="item.icon"></i><span>{{item.roleName}}</span></template>
               <el-menu-item v-for="child in item.menus" :index="child.url" :key="child.url">
-                <i :class="child.icon"></i>{{child.name+'cctv'+child.url}}
+                <i :class="child.icon"></i>{{child.name}}
               </el-menu-item>
             </el-submenu>
           </template>
@@ -132,7 +133,7 @@
   }
 
   .header-app-info-normal {
-    background-color: rgb(150, 235, 13);
+    /*background-color: rgb(150, 235, 13); 绿色背景*/
     color: #FFF;
     line-height: 60px;
     text-align: left;
@@ -152,7 +153,7 @@
   }
 
   .el-header {
-    background-color: rgb(0, 140, 255);
+    background-color: rgb(0, 140, 255); /*蓝色背景*/
     color: #333;
     line-height: 60px;
     text-align: right;
@@ -168,7 +169,7 @@
 
   .el-container {
     margin-bottom: 40px;
-    background: rgb(255, 47, 47);
+    /* background: rgb(255, 47, 47);*红色背景 */
   }
   /* 2019年03月23日20:30:33 调整界面 让面板可以滚动*/
   .content-container {
@@ -190,9 +191,19 @@
         
   /* 嵌入的子页面*/
   .content-wrapper {
-		background-color: #ff0;
+		/*background-color: #ff0;黄色背景 调试重要*/
 		box-sizing: border-box;
   }
+  /* 让工具栏有边*/
+  .toolbar {
+	  background: #f2f2f2;
+	  padding: 10px;
+	  /*border:1px solid #dfe6ec; */
+	  margin: 10px 0px;
+  }
+  .el-form-item {
+		margin-bottom: 10px;
+	}
   
 </style>
 
@@ -207,7 +218,7 @@
       return {
         way: '关闭',
         isCollapse: false,
-        appName: 'CLASS-ADMIN',
+        appName: 'REDIS-ADMIN',
         userName: '',
         userAvatar: '',
         roles:[]

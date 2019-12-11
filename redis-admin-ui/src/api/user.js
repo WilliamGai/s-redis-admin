@@ -74,6 +74,10 @@ export default {
     return axios.get(`${base}/${tag}/unlock`, {
       params: params
     });
+  },
+  upRole: params => {
+    return axios.get(`${base}/${tag}/upRole`, {
+      params: params
+    });
   }
-
 }

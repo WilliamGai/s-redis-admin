@@ -20,31 +20,31 @@
 import axios from 'axios';
 
 axios.interceptors.request.use(function (config) {
-        console.log('%c HTTP INTERCEPTORS URL:', 'color:#00FFFF;', location.href);
-        console.log('%c HTTP INTERCEPTORS PORT:', 'color:#00FFFF;', location.port);
-        console.log('%c HTTP INTERCEPTORS HOST_NAME:', 'color:#00FFFF;', location.hostname);
-        console.log('%c HTTP INTERCEPTORS SSO_TOKEN2:', 'color:#00FFFF;', getCookie('ssoToken'));
-        console.log('%c HTTP INTERCEPTORS SSO_TOKEN2:', 'color:#00FFFF;', getCookieByName('ssoToken'));
-        console.log('%c HTTP INTERCEPTORS CONFIG:', 'color:#FFDEAD;', config);
+        ///console.log('%c HTTP INTERCEPTORS URL:', 'color:#00FFFF;', location.href);
+        ///console.log('%c HTTP INTERCEPTORS PORT:', 'color:#00FFFF;', location.port);
+        ///console.log('%c HTTP INTERCEPTORS HOST_NAME:', 'color:#00FFFF;', location.hostname);
+        ///console.log('%c HTTP INTERCEPTORS SSO_TOKEN2:', 'color:#00FFFF;', getCookie('ssoToken'));
+        ///console.log('%c HTTP INTERCEPTORS SSO_TOKEN2:', 'color:#00FFFF;', getCookieByName('ssoToken'));
+        ///console.log('%c HTTP INTERCEPTORS CONFIG:', 'color:#FFDEAD;', config);
         
-        console.log('%c HTTP INTERCEPTORS SSO_TOKEN3:', 'color:#00FFFF;', document.cookie.length);
+        ///console.log('%c HTTP INTERCEPTORS SSO_TOKEN3:', 'color:#00FFFF;', document.cookie.length);
         let ssoCookie = getCookieByName('ascookies');
 
         let ssoObject = eval(ssoCookie);
-        console.log('%c HTTP INTERCEPTORS SSO_TOKEN ascookies:', 'color:#00FFFF;', ssoCookie);
-        console.log('%c HTTP INTERCEPTORS SSO_TOKEN ascookies jsonObj:', 'color:#00FFFF;', ssoObject);
+        ///console.log('%c HTTP INTERCEPTORS SSO_TOKEN ascookies:', 'color:#00FFFF;', ssoCookie);
+        ///console.log('%c HTTP INTERCEPTORS SSO_TOKEN ascookies jsonObj:', 'color:#00FFFF;', ssoObject);
 
         if (!ssoObject){
             return config;
         }
-        console.log('%c HTTP INTERCEPTORS SSO_TOKEN3:', 'color:#00FFFF;', ssoObject);
-        console.log('%c HTTP INTERCEPTORS SSO_TOKEN3:', 'color:#00FFFF;', ssoObject.toString());
+        ///console.log('%c HTTP INTERCEPTORS SSO_TOKEN3:', 'color:#00FFFF;', ssoObject);
+        ///console.log('%c HTTP INTERCEPTORS SSO_TOKEN3:', 'color:#00FFFF;', ssoObject.toString());
         /** as same as config.headers['ssoToken'] = ssoObject[0].v;  */
         for (var i = 0, l = ssoObject.length; i < l; i++) {
-            console.log('%c HTTP INTERCEPTORS set ssoToken kv loop:', 'color:#00FFFF;', i, ssoObject[i]);
+            ///console.log('%c HTTP INTERCEPTORS set ssoToken kv loop:', 'color:#00FFFF;', i, ssoObject[i]);
             if (ssoObject[i]['k'] == 'manageUserToken') {
               config.headers['ssoToken'] = ssoObject[i]['v'];
-              console.log('%c HTTP INTERCEPTORS set ssoToken in header:', 'color:#00FFFF;', ssoObject[i]['k']);
+             /// console.log('%c HTTP INTERCEPTORS set ssoToken in header:', 'color:#00FFFF;', ssoObject[i]['k']);
             }
         }
         
@@ -64,15 +64,15 @@ axios.interceptors.request.use(function (config) {
 
 axios.interceptors.response.use(
     function (response) {
-        console.log('%c HTTP INTERCEPTORS AFTER:', location.port , 'color:#00FFFF;');
+        ///console.log('%c HTTP INTERCEPTORS AFTER:', location.port , 'color:#00FFFF;');
         if(response.data.code != 200){
             //window.location.href = location.protocol + '//' + location.hostname + '/account/signupOrLogin'
             let ssoUrl = response.data.data;
             if (ssoUrl) {
                 var url = ssoUrl + "?redirect_url=" + window.location.href;
                  window.location.href = url;
-                console.log('%c HTTP INTERCEPTORS REDIRECT:', 'color:#FF00FF;', response.data.code);
-                console.log('%c HTTP INTERCEPTORS REDIRECT:', 'color:#FF00FF;', url);
+                ///console.log('%c HTTP INTERCEPTORS REDIRECT:', 'color:#FF00FF;', response.data.code);
+                ///console.log('%c HTTP INTERCEPTORS REDIRECT:', 'color:#FF00FF;', url);
             }
         }
         return response
@@ -99,10 +99,10 @@ function getCookie(name) {
 function getCookieByName(name) {
   var cookies = document.cookie;
   var list = cookies.split("; "); // 解析出名/值对列表
-  console.log('%c HTTP INTERCEPTORS SSO_TOKEN LENGTH:', 'color:#00FFFF;', list.length);
+  ///console.log('%c HTTP INTERCEPTORS SSO_TOKEN LENGTH:', 'color:#00FFFF;', list.length);
   for (var i = 0; i < list.length; i++) {
     var arr = list[i].split("="); // 解析出名和值
-    console.log('%c HTTP INTERCEPTORS SSO_TOKEN VALUE:', 'color:#00FFFF;', arr);
+    ///console.log('%c HTTP INTERCEPTORS SSO_TOKEN VALUE:', 'color:#00FFFF;', arr);
     if (arr[0] == name)
       return decodeURIComponent(arr[1]); // 对cookie值解码
   }
