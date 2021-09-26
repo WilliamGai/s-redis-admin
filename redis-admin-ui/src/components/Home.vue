@@ -250,7 +250,7 @@
 
       console.log('%c HOME MOUNTED !!!!! :', 'color:#0f0;');
       let para = {
-        id: 10581907
+        id: 10086
       };
 
       userApi.getItem(para).then(res => {

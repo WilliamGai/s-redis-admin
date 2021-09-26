@@ -18,7 +18,7 @@
     <el-table :data="items" highlight-current-row  style="width: 100%;" :row-class-name="tableRowClassName2">
       <el-table-column type="index" width="60">
       </el-table-column>
-      <el-table-column prop="userNo" label="编号" width="100" sortable>
+      <el-table-column prop="userNo" label="编号" width="200" sortable>
       </el-table-column>
       <el-table-column prop="userName" label="名称" width="100" sortable>
       </el-table-column>
